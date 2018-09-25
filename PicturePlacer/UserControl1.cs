@@ -23,6 +23,16 @@ namespace PicturePlacer
             public Point position;
         };
 
+        public static bool InDistance(Point Old, Point Current, int distance)
+        {
+            int diffX = Math.Abs(Old.X - Current.X);
+            int diffY = Math.Abs(Old.Y - Current.Y);
+            return diffX <= distance && diffY <= distance;
+        }
+        // banging head on this:
+        // https://stackoverflow.com/questions/13032331/determine-if-two-points-are-near
+
+
         public List<MemeText> texts= new List<MemeText>();
 
         // the index of the memetext we're currently dragging around or editing
@@ -32,12 +42,12 @@ namespace PicturePlacer
         {
             InitializeComponent();
             MemeText text = new MemeText();
-            text.text = "hello";
-            text.position = new Point(100, 100);
-            texts.Add(text);
+            //text.text = "hello";
+            //text.position = new Point(100, 100);
+            //texts.Add(text);
         }
 
-
+        
 
 
         private void PicturePlacer_Load(object sender, EventArgs e)
@@ -58,7 +68,8 @@ namespace PicturePlacer
             currentIndex = -1;
             for (int i = 0; i < texts.Count; i++)
             {
-                if ()
+                // Want to compare these 
+                if (e.Location == texts[currentIndex].position)
                 {
                     currentIndex = i;
                 }
